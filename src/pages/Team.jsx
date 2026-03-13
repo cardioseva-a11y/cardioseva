@@ -49,7 +49,7 @@ const Team = () => {
       img: ahmad,
     },
     {
-      name: "Dr.Shadab",
+      name: "Dr.Shadab Khan",
       role: "Clinical Advisor",
       img: shadab,
     },
