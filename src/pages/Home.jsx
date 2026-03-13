@@ -74,7 +74,7 @@ const Home = () => {
           <div className="lg:w-1/2 relative">
             <div className="absolute -top-10 -right-10 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
             <img 
-              src="https://res.cloudinary.com/dbq4rt3ja/image/upload/v1773417062/program12_dwzzti.jpg" 
+              src="https://res.cloudinary.com/dbq4rt3ja/image/upload/v1773428511/team22_g9ttmc.jpg" 
               className="rounded-[3rem] shadow-2xl border-8 border-white relative z-10 object-cover h-[550px] w-full"
               alt="Medical Team"
             />
