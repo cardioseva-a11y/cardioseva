@@ -54,10 +54,8 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { name: "Instagram", icon: "fa-instagram", link: "https://instagram.com/cardioseva", hover: "hover:bg-pink-600" },
-    { name: "Facebook", icon: "fa-facebook-f", link: "https://facebook.com/cardioseva", hover: "hover:bg-blue-700" },
-    { name: "LinkedIn", icon: "fa-linkedin-in", link: "https://linkedin.com/company/cardioseva", hover: "hover:bg-blue-800" },
-    { name: "X-Twitter", icon: "fa-x-twitter", link: "https://twitter.com/cardioseva", hover: "hover:bg-black" }
+    { name: "Instagram", icon: "fa-instagram", link: "https://www.instagram.com/cardio__seva?igsh=NTkzM3hwdHY3ZGps", hover: "hover:bg-pink-600" },
+    { name: "Facebook", icon: "fa-facebook-f", link: "https://www.facebook.com/share/1DEqNsaZsR/", hover: "hover:bg-blue-700" },
   ];
 
   return (

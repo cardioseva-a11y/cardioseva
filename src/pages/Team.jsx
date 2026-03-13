@@ -1,19 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ahmad from '../assets/ahmad.jpeg';
-import Aliza from '../assets/Aliza.jpeg';
-import faiq from '../assets/faiq.jpeg';
-import hassam from '../assets/hassam.jpeg';
-import shadab from '../assets/shadab.jpeg';
-import Anshika from '../assets/Anshika.jpeg';
-import amir from '../assets/amir.jpeg';
-import Naziya from '../assets/Naziya.jpeg';
+import ahmad from "../assets/ahmad.jpeg";
+import Aliza from "../assets/Aliza.jpeg";
+import faiq from "../assets/faiq.jpeg";
+import hassam from "../assets/hassam.jpeg";
+import shadab from "../assets/shadab.jpeg";
+import Anshika from "../assets/Anshika.jpeg";
+import amir from "../assets/amir.jpeg";
+import Naziya from "../assets/Naziya.jpeg";
 
 const Team = () => {
   const leadership = {
-    name: "Dr. Faiq Ahmad Mansoori",
+    name: "Faiq Ahmad Mansoori",
     role: "Founder & Chief Medical Officer",
-    desc: "Dr. Faiq Ahmad Mansoori leading the initiative to strengthen healthcare awareness and preventive health education. He oversees the overall mission, strategy, collaborations and national awareness campaigns of CardioSeva. His vision is to work strongly on healthcare infrastructure support, health education, poverty-related healthcare challenges and large-scale public health awareness to help build a healthier society.",
+    desc: "Faiq Ahmad Mansoori leading the initiative to strengthen healthcare awareness and preventive health education. He oversees the overall mission, strategy, collaborations and national awareness campaigns of CardioSeva. His vision is to work strongly on healthcare infrastructure support, health education, poverty-related healthcare challenges and large-scale public health awareness to help build a healthier society.",
     img: faiq,
   };
 
@@ -24,6 +24,26 @@ const Team = () => {
       img: hassam,
     },
     {
+      name: "Aliza Rizvi",
+      role: "Managing Director Cardioseva",
+      img: Aliza,
+    },
+    {
+      name: "Dr.Amir",
+      role: "Chief Medical Officer",
+      img: amir,
+    },
+    {
+      name: "Dr.Anshika",
+      role: "Clinical Advisor",
+      img: Anshika,
+    },
+    {
+      name: "Dr.Naziya Siddiqui",
+      role: "Psychologist",
+      img: Naziya,
+    },
+    {
       name: "Dr.Ahmad Abubaker",
       role: "Senior Clinical Advisor",
       img: ahmad,
@@ -32,26 +52,6 @@ const Team = () => {
       name: "Dr.Shadab",
       role: "Clinical Advisor",
       img: shadab,
-    },
-    {
-      name: "Dr.Anshika",
-      role: "Clinical Advisor",
-      img: Anshika,
-    },
-    {
-      name: "Dr.Amir",
-      role: "Chief Medical Officer",
-      img: amir,
-    },
-    {
-      name: "Dr.Naziya Siddiqui",
-      role: "Psychologist",
-      img: Naziya,
-    },
-    {
-      name: "Dr. Aliza Rizvi",
-      role: "Managing Director Cardioseva",
-      img: Aliza,
     },
   ];
 
@@ -128,9 +128,7 @@ const Team = () => {
                     alt={member.name}
                     loading="lazy"
                   />
-                  <div
-                    className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-8"
-                  >
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-8">
                     <div className="flex gap-4">
                       <i className="fab fa-linkedin text-white text-2xl cursor-pointer hover:text-blue-400"></i>
                       <i className="fas fa-envelope text-white text-2xl cursor-pointer hover:text-blue-400"></i>
