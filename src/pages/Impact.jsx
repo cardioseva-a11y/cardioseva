@@ -17,16 +17,16 @@ const Impact = () => {
       icon: "fa-user-injured"
     },
     {
-      title: "Supporting Insaniyat Hospital",
-      description: "Commitment to infrastructure is key. We donated ₹2.0 Lakhs to Insaniyat Hospital to upgrade their medical facilities and ensure the underprivileged receive quality healthcare without the burden of cost.",
-      impact: "₹2.0 Lakh Donation",
-      icon: "fa-hospital"
-    },
-    {
       title: "Beyond Medicine: Basic Needs",
       description: "Health is tied to nutrition. We have successfully conducted multiple free ration distribution drives for struggling families and facilitated critical Angioplasty procedures for 3-4 patients who lacked the means for surgery.",
       impact: "Ration & Angioplasty Support",
       icon: "fa-wheat-awn"
+    },
+    {
+      title: "Preventative Screening Drives",
+      description: "Early detection saves lives. Our team conducts regular heart-health screenings in underserved communities, identifying high-risk individuals and providing them with immediate medical pathways and expert consultations.",
+      impact: "Community Health Defense",
+      icon: "fa-stethoscope"
     }
   ];
 
@@ -98,12 +98,12 @@ const Impact = () => {
         </div>
       </section>
 
-      {/* --- NEW: MILESTONE STORIES SECTION --- */}
+      {/* --- MILESTONE STORIES SECTION --- */}
       <section className="py-24 bg-blue-50/50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="mb-16">
             <h2 className="text-4xl font-black text-slate-900 mb-4">Milestones of Care</h2>
-            <p className="text-slate-600 max-w-2xl text-lg">Direct interventions that changed the course of lives and supported the healthcare ecosystem.</p>
+            <p className="text-slate-600 max-w-2xl text-lg">Direct interventions and community support initiatives that define our daily commitment to heart health.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {caseStories.map((item, i) => (
