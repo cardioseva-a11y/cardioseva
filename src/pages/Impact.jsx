@@ -4,12 +4,40 @@ import { Link } from 'react-router-dom';
 const Impact = () => {
   const stats = [
     { label: "Lives Impacted", value: "120,000+", icon: "fa-heart-pulse", color: "text-red-600", bg: "bg-red-50" },
-    { label: "Programs Conducted", value: "90+", icon: "fa-calendar-check", color: "text-blue-600", bg: "bg-blue-50" },
+    { label: "Financial Aid", value: "₹2.0L+", icon: "fa-hand-holding-dollar", color: "text-blue-600", bg: "bg-blue-50" },
     { label: "Medical Camps", value: "55+", icon: "fa-tent", color: "text-green-600", bg: "bg-green-50" },
     { label: "Cities Reached", value: "10+", icon: "fa-map-location-dot", color: "text-purple-600", bg: "bg-purple-50" }
   ];
 
+  const caseStories = [
+    {
+      title: "Irfan Ansari's Road to Recovery",
+      description: "When Irfan Ansari faced a life-threatening medical crisis, CardioSeva stepped in to facilitate treatment worth ₹2,00,000. Beyond the initial surgery, we continue to support and manage his ongoing dialysis sessions to ensure he leads a stable life.",
+      impact: "Treatment & Ongoing Dialysis",
+      icon: "fa-user-injured"
+    },
+    {
+      title: "Supporting Insaniyat Hospital",
+      description: "Commitment to infrastructure is key. We donated ₹2.0 Lakhs to Insaniyat Hospital to upgrade their medical facilities and ensure the underprivileged receive quality healthcare without the burden of cost.",
+      impact: "₹2.0 Lakh Donation",
+      icon: "fa-hospital"
+    },
+    {
+      title: "Beyond Medicine: Basic Needs",
+      description: "Health is tied to nutrition. We have successfully conducted multiple free ration distribution drives for struggling families and facilitated critical Angioplasty procedures for 3-4 patients who lacked the means for surgery.",
+      impact: "Ration & Angioplasty Support",
+      icon: "fa-wheat-awn"
+    }
+  ];
+
   const stories = [
+    { 
+      name: "Irfan Ansari", 
+      loc: "Patient Case", 
+      text: "CardioSeva arranged 2 Lakh rupees for my treatment and is still managing my regular dialysis. They gave me a second chance at life.",
+      img: "",
+      tag: "Critical Support"
+    },
     { 
       name: "Sita Sharma", 
       loc: "Lucknow", 
@@ -23,13 +51,6 @@ const Impact = () => {
       text: "The free medical camp in our village was a blessing. I received expert guidance that I simply couldn't afford otherwise.",
       img: "",
       tag: "Camp Impact"
-    },
-    { 
-      name: "Kristi Patel", 
-      loc: "Lucknow", 
-      text: "Participating in the BLS training empowered me to help my community in emergencies. It gave me the confidence to save lives.",
-      img: "",
-      tag: "Training Program"
     }
   ];
 
@@ -77,6 +98,30 @@ const Impact = () => {
         </div>
       </section>
 
+      {/* --- NEW: MILESTONE STORIES SECTION --- */}
+      <section className="py-24 bg-blue-50/50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="mb-16">
+            <h2 className="text-4xl font-black text-slate-900 mb-4">Milestones of Care</h2>
+            <p className="text-slate-600 max-w-2xl text-lg">Direct interventions that changed the course of lives and supported the healthcare ecosystem.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {caseStories.map((item, i) => (
+              <div key={i} className="bg-white p-8 rounded-[2.5rem] border border-blue-100 shadow-sm">
+                <div className="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-6">
+                  <i className={`fas ${item.icon}`}></i>
+                </div>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">{item.title}</h3>
+                <p className="text-slate-600 leading-relaxed mb-6">{item.description}</p>
+                <div className="pt-6 border-t border-slate-100">
+                  <span className="text-blue-600 font-bold text-sm uppercase tracking-wider">{item.impact}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* --- IMPACT STORIES --- */}
       <section className="py-24 max-w-7xl mx-auto px-4">
         <div className="text-center mb-20">
@@ -89,7 +134,9 @@ const Impact = () => {
             <div key={i} className="bg-slate-50 p-10 rounded-[3.5rem] relative overflow-hidden group hover:bg-white hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-blue-100">
               <i className="fas fa-quote-right absolute top-8 right-8 text-4xl text-blue-100"></i>
               <div className="flex items-center gap-5 mb-8 relative z-10">
-                <img src={story.img} className="w-20 h-20 rounded-2xl object-cover border-4 border-white shadow-xl" />
+                <div className="w-20 h-20 rounded-2xl bg-slate-200 border-4 border-white shadow-xl flex items-center justify-center text-slate-400">
+                  <i className="fas fa-user text-3xl"></i>
+                </div>
                 <div>
                   <h4 className="font-black text-xl text-slate-900">{story.name}</h4>
                   <p className="text-blue-600 text-xs font-black uppercase tracking-widest">{story.loc}</p>
@@ -104,7 +151,7 @@ const Impact = () => {
         </div>
       </section>
 
-      {/* --- VISUAL GALLERY (MASONRY-STYLE) --- */}
+      {/* --- VISUAL GALLERY --- */}
       <section className="py-24 bg-slate-950 rounded-[4rem] mx-4 lg:mx-10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">

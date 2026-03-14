@@ -22,6 +22,8 @@ const Team = () => {
       name: "Dr Hassam Ahmad",
       role: "Co-Founder",
       img: hassam,
+      email: "hassamahmad987@gmail.com",
+      phone: "9936586906",
     },
     {
       name: "Aliza Rizvi",
@@ -97,9 +99,12 @@ const Team = () => {
               "{leadership.desc}"
             </p>
             <div className="flex gap-4">
-              <button className="bg-white text-blue-600 px-8 py-3 rounded-2xl font-bold border border-blue-100 shadow-sm hover:shadow-md transition">
+              <Link
+                to="/contact-us"
+                className="bg-white text-blue-600 px-8 py-3 rounded-2xl font-bold border border-blue-100 shadow-sm hover:shadow-md transition inline-block"
+              >
                 Contact Faiq Mansoori
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -124,24 +129,38 @@ const Team = () => {
                 <div className="relative overflow-hidden rounded-[2.5rem] mb-6">
                   <img
                     src={member.img}
-                    className="w-full h-80 object-contain transform group-hover:scale-110 transition-transform duration-700"
+                    className="w-full h-80 object-contain transform group-hover:scale-105 transition-transform duration-700"
                     alt={member.name}
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-8">
-                    <div className="flex gap-4">
-                      <i className="fab fa-linkedin text-white text-2xl cursor-pointer hover:text-blue-400"></i>
-                      <i className="fas fa-envelope text-white text-2xl cursor-pointer hover:text-blue-400"></i>
-                    </div>
-                  </div>
                 </div>
                 <div className="text-center">
                   <h3 className="text-2xl font-bold text-slate-900 mb-2">
                     {member.name}
                   </h3>
-                  <p className="text-blue-600 font-bold text-sm uppercase tracking-wider">
+                  <p className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-4">
                     {member.role}
                   </p>
+
+                  {/* ONLY FOR DR HASSAM: Show Contact Details Below Role */}
+                  {member.name === "Dr Hassam Ahmad" && (
+                    <div className="flex flex-col items-center gap-2 mt-4 pt-4 border-t border-slate-100">
+                      <a 
+                        href={`mailto:${member.email}`} 
+                        className="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors text-sm font-medium"
+                      >
+                        <i className="fas fa-envelope text-blue-500"></i>
+                        {member.email}
+                      </a>
+                      <a 
+                        href={`tel:${member.phone}`} 
+                        className="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors text-sm font-medium"
+                      >
+                        <i className="fas fa-phone text-blue-500"></i>
+                        +91 {member.phone}
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -160,7 +179,7 @@ const Team = () => {
             and healthcare volunteers to expand our reach.
           </p>
           <Link
-            className="bg-blue-600 text-white px-12 py-5 rounded-full font-black text-xl shadow-2xl shadow-blue-200 hover:bg-blue-700 hover:-translate-y-1 transition-all"
+            className="bg-blue-600 text-white px-12 py-5 rounded-full font-black text-xl shadow-2xl shadow-blue-200 hover:bg-blue-700 hover:-translate-y-1 transition-all inline-block"
             to="/contact-us"
           >
             Get Involved Now
