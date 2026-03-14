@@ -12,7 +12,7 @@ import Naziya from "../assets/Naziya.jpeg";
 const Team = () => {
   const leadership = {
     name: "Faiq Ahmad Mansoori",
-    role: "Founder & Chief Medical Officer",
+    role: "Founder & CEO",
     desc: "Faiq Ahmad Mansoori leading the initiative to strengthen healthcare awareness and preventive health education. He oversees the overall mission, strategy, collaborations and national awareness campaigns of CardioSeva. His vision is to work strongly on healthcare infrastructure support, health education, poverty-related healthcare challenges and large-scale public health awareness to help build a healthier society.",
     img: faiq,
   };
@@ -98,7 +98,7 @@ const Team = () => {
             </p>
             <div className="flex gap-4">
               <button className="bg-white text-blue-600 px-8 py-3 rounded-2xl font-bold border border-blue-100 shadow-sm hover:shadow-md transition">
-                Contact Dr. Faiq
+                Contact Faiq Mansoori
               </button>
             </div>
           </div>
