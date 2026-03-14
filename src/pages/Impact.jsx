@@ -60,7 +60,7 @@ const Impact = () => {
     { url: "https://res.cloudinary.com/dbq4rt3ja/image/upload/v1773417801/program9_yhwh3c.jpg", caption: "Founder sharing his vision" },
     { url: "https://res.cloudinary.com/dbq4rt3ja/image/upload/v1773417894/camp1_f69rvi.jpg", caption: "Free Medical Camps." },
     { url: "https://res.cloudinary.com/dbq4rt3ja/image/upload/v1773417991/camp4_uzwslk.jpg", caption: "Emergency Response Drill" },
-    { url: "https://res.cloudinary.com/dbq4rt3ja/image/upload/v1773418098/akhilesh_yth3qx.jpg", caption: "Award by Honable Sir Shri Akhilesh Yadab" }
+    { url: "https://res.cloudinary.com/dbq4rt3ja/image/upload/v1773418098/akhilesh_yth3qx.jpg", caption: "Award by Honable Sir Shri Akhilesh Yadav" }
   ];
 
   return (
