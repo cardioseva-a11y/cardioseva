@@ -65,7 +65,7 @@ const Maintenance = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto">
           <div className="bg-slate-50/50 backdrop-blur-sm border border-slate-100 p-5 rounded-2xl hover:border-blue-200 transition-colors">
             <p className="text-[10px] text-slate-400 font-bold uppercase mb-1 tracking-wider">Urgent Assistance</p>
-            <p className="text-slate-700 font-bold">+91 7055063850</p>
+            <p className="text-slate-700 font-bold">+91 9555009585</p>
           </div>
           <div className="bg-slate-50/50 backdrop-blur-sm border border-slate-100 p-5 rounded-2xl hover:border-blue-200 transition-colors">
             <p className="text-[10px] text-slate-400 font-bold uppercase mb-1 tracking-wider">Email Support</p>
