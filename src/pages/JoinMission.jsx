@@ -10,6 +10,15 @@ const JoinMission = () => {
     e.preventDefault();
     setIsSending(true);
 
+    // 1. Get the values from the visible fields
+    const role = e.target.role.value;
+    const phone = e.target.phone.value;
+    const rawMsg = e.target.raw_message.value;
+
+    // 2. Combine them into one string and put it in the hidden 'message' field
+    // This ensures your EmailJS template (which likely uses {{message}}) gets everything.
+    form.current.message.value = `Role: ${role} | Phone: ${phone} | Message: ${rawMsg}`;
+
     emailjs.sendForm(
       'service_u729ekp', 
       'template_q3qifr4', 
@@ -88,7 +97,6 @@ const JoinMission = () => {
 
         {/* --- APPLICATION FORM --- */}
         <div className="flex flex-col lg:flex-row gap-16 bg-slate-50 rounded-[4rem] overflow-hidden border border-slate-100 shadow-xl">
-          {/* Why Join Sidebar */}
           <div className="lg:w-1/3 bg-blue-600 p-12 md:p-16 text-white">
             <h3 className="text-3xl font-black mb-10 tracking-tight">Why Apply?</h3>
             <ul className="space-y-8">
@@ -105,62 +113,45 @@ const JoinMission = () => {
                 </li>
               ))}
             </ul>
-            <div className="mt-16 pt-10 border-t border-blue-500/50">
-              <p className="text-blue-200 text-sm italic">"Be the change you wish to see in India's healthcare."</p>
-            </div>
           </div>
 
-          {/* Actual Form */}
           <div className="lg:w-2/3 p-8 md:p-16 bg-white">
             <h2 className="text-3xl font-black text-slate-900 mb-10 tracking-tight">Submit Application</h2>
             
             <form ref={form} className="space-y-8" onSubmit={sendEmail}>
+              {/* This is the hidden field that combines everything for your template */}
+              <input type="hidden" name="message" />
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-3">
                   <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">Full Name</label>
-                  <input 
-                    name="user_name" 
-                    type="text" 
-                    required 
-                    placeholder="John Doe" 
-                    className="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-6 py-5 focus:bg-white focus:border-blue-600 focus:ring-0 outline-none transition-all font-medium" 
-                  />
+                  <input name="user_name" type="text" required placeholder="John Doe" className="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-6 py-5 focus:bg-white focus:border-blue-600 outline-none transition-all font-medium" />
                 </div>
                 <div className="space-y-3">
                   <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">Email Address</label>
-                  <input 
-                    name="email" 
-                    type="email" 
-                    required 
-                    placeholder="email@example.com" 
-                    className="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-6 py-5 focus:bg-white focus:border-blue-600 focus:ring-0 outline-none transition-all font-medium" 
-                  />
+                  <input name="email" type="email" required placeholder="email@example.com" className="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-6 py-5 focus:bg-white focus:border-blue-600 outline-none transition-all font-medium" />
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">Preferred Role</label>
-                <select 
-                  name="role" 
-                  required
-                  className="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-6 py-5 focus:bg-white focus:border-blue-600 focus:ring-0 outline-none transition-all font-medium appearance-none cursor-pointer"
-                >
-                  <option value="">Select a role</option>
-                  <option value="Medical Volunteer">Medical Volunteer</option>
-                  <option value="Corporate Partner">Corporate Partner</option>
-                  <option value="Awareness Advocate">Awareness Advocate</option>
-                </select>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">Phone Number</label>
+                  <input name="phone" type="tel" required placeholder="+91 00000 00000" className="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-6 py-5 focus:bg-white focus:border-blue-600 outline-none transition-all font-medium" />
+                </div>
+                <div className="space-y-3">
+                  <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">Preferred Role</label>
+                  <select name="role" required className="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-6 py-5 focus:bg-white focus:border-blue-600 outline-none transition-all font-medium appearance-none cursor-pointer">
+                    <option value="">Select a role</option>
+                    <option value="Medical Volunteer">Medical Volunteer</option>
+                    <option value="Corporate Partner">Corporate Partner</option>
+                    <option value="Awareness Advocate">Awareness Advocate</option>
+                  </select>
+                </div>
               </div>
 
               <div className="space-y-3">
                 <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">Why do you want to join?</label>
-                <textarea 
-                  name="message" 
-                  rows="4" 
-                  required 
-                  placeholder="Tell us about your motivation..." 
-                  className="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-6 py-5 focus:bg-white focus:border-blue-600 focus:ring-0 outline-none transition-all font-medium resize-none"
-                ></textarea>
+                <textarea name="raw_message" rows="4" required placeholder="Tell us about your motivation..." className="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-6 py-5 focus:bg-white focus:border-blue-600 outline-none transition-all font-medium resize-none"></textarea>
               </div>
 
               {status.msg && (
@@ -170,26 +161,12 @@ const JoinMission = () => {
                 </div>
               )}
 
-              <button 
-                type="submit" 
-                disabled={isSending}
-                className={`w-full text-white font-black py-6 rounded-2xl shadow-2xl transition-all active:scale-[0.98] flex items-center justify-center gap-3 ${isSending ? 'bg-slate-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 shadow-blue-200'}`}
-              >
-                {isSending ? (
-                  <><i className="fas fa-spinner fa-spin"></i> Processing...</>
-                ) : (
-                  <>Submit Application <i className="fas fa-arrow-right text-sm"></i></>
-                )}
+              <button type="submit" disabled={isSending} className={`w-full text-white font-black py-6 rounded-2xl shadow-2xl transition-all active:scale-[0.98] flex items-center justify-center gap-3 ${isSending ? 'bg-slate-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 shadow-blue-200'}`}>
+                {isSending ? (<><i className="fas fa-spinner fa-spin"></i> Processing...</>) : (<>Submit Application <i className="fas fa-arrow-right text-sm"></i></>)}
               </button>
             </form>
           </div>
         </div>
-      </section>
-
-      {/* --- FOOTER TRIGGER --- */}
-      <section className="py-24 text-center">
-        <p className="text-slate-400 font-bold uppercase tracking-widest text-xs mb-4">Join 10,000+ impacted lives</p>
-        <h2 className="text-2xl md:text-3xl font-black text-slate-900 italic tracking-tight">"Be the heart of our mission."</h2>
       </section>
     </div>
   );
