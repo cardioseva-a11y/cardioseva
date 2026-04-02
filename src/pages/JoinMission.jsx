@@ -144,7 +144,7 @@ const JoinMission = () => {
                     <option value="">Select a role</option>
                     <option value="Medical Volunteer">Medical Volunteer</option>
                     <option value="Corporate Partner">Corporate Partner</option>
-                    <option value="Awareness Advocate">Awareness Advocate</option>
+                    <option value="Sponsor a camp">Sponsor a camp</option>
                   </select>
                 </div>
               </div>
