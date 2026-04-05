@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ahmad from "../assets/ahmad.jpeg";
 import Aliza from "../assets/Aliza.jpeg";
@@ -10,154 +10,162 @@ import amir from "../assets/amir.jpeg";
 import Naziya from "../assets/Naziya.jpeg";
 
 const Team = () => {
+  useEffect(() => {
+    const els = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.12 }
+    );
+    els.forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
   const leadership = {
     name: "Faiq Ahmad Mansoori",
     role: "Founder & CEO",
-    desc: "Faiq Ahmad Mansoori leading the initiative to strengthen healthcare awareness and preventive health education. He oversees the overall mission, strategy, collaborations and national awareness campaigns of CardioSeva. His vision is to work strongly on healthcare infrastructure support, health education, poverty-related healthcare challenges and large-scale public health awareness to help build a healthier society.",
+    desc: "Faiq Ahmad Mansoori leads the initiative to strengthen healthcare awareness and preventive health education. He oversees the overall mission, strategy, collaborations and national awareness campaigns of CardioSeva. His vision is to work strongly on healthcare infrastructure support, health education, poverty-related healthcare challenges and large-scale public health awareness to help build a healthier society.",
     img: faiq,
   };
 
   const experts = [
-    {
-      name: "Dr Hassam Ahmad",
-      role: "Co-Founder",
-      img: hassam,
-      email: "hassamahmad987@gmail.com",
-      phone: "9936586906",
-    },
-    {
-      name: "Aliza Rizvi",
-      role: "Managing Director Cardioseva",
-      img: Aliza,
-    },
-    {
-      name: "Dr.Amir",
-      role: "Chief Medical Officer",
-      img: amir,
-    },
-    {
-      name: "Dr.Anshika",
-      role: "Clinical Advisor",
-      img: Anshika,
-    },
-    {
-      name: "Dr.Naziya Siddiqui",
-      role: "Psychologist",
-      img: Naziya,
-    },
-    {
-      name: "Dr.Ahmad Abubaker",
-      role: "Senior Clinical Advisor",
-      img: ahmad,
-    },
-    {
-      name: "Dr.Shadab Khan",
-      role: "Clinical Advisor",
-      img: shadab,
-    },
+    { name: "Dr Hassam Ahmad",    role: "Co-Founder",                     img: hassam,  email: "hassamahmad987@gmail.com", phone: "9936586906" },
+    { name: "Aliza Rizvi",        role: "Managing Director",               img: Aliza },
+    { name: "Dr. Amir",           role: "Chief Medical Officer",           img: amir },
+    { name: "Dr. Anshika",        role: "Clinical Advisor",                img: Anshika },
+    { name: "Dr. Naziya Siddiqui",role: "Psychologist",                    img: Naziya },
+    { name: "Dr. Ahmad Abubaker", role: "Senior Clinical Advisor",         img: ahmad },
+    { name: "Dr. Shadab Khan",    role: "Clinical Advisor",                img: shadab },
   ];
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* --- PAGE HEADER --- */}
-      <section className="relative py-24 bg-slate-900 text-center overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <img
-            src="https://www.transparenttextures.com/patterns/cubes.png"
-            alt="pattern"
-          />
+    <div className="cs-bg min-h-screen font-inter">
+
+      {/* ── HERO ───────────────────────────────── */}
+      <section className="relative py-28 text-center overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #0a0f1e 0%, #0f172a 60%, #0d1b30 100%)' }}>
+        <div className="absolute inset-0 opacity-8 pointer-events-none"
+          style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/cubes.png')" }}></div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[500px] h-[400px] bg-blue-600/10 rounded-full blur-3xl"></div>
         </div>
-        <h1 className="text-4xl md:text-6xl font-black text-white relative z-10">
-          Our Leadership Team
-        </h1>
-        <p className="text-blue-400 font-bold mt-4 uppercase tracking-[0.3em] text-sm relative z-10">
-          The Experts Behind CardioSeva
-        </p>
+        <div className="absolute bottom-0 inset-x-0 opacity-15 pointer-events-none">
+          <svg viewBox="0 0 1000 40" className="w-full" preserveAspectRatio="none">
+            <polyline fill="none" stroke="#3b82f6" strokeWidth="2"
+              points="0,20 120,20 150,5 170,35 190,5 210,20 1000,20" />
+          </svg>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600/15 border border-blue-500/20 text-blue-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6">
+            <i className="fas fa-users-medical text-xs"></i> The Experts Behind CardioSeva
+          </span>
+          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight">
+            Our <span className="gradient-text">Leadership</span> Team
+          </h1>
+          <p className="text-slate-400 text-lg leading-relaxed font-medium max-w-2xl mx-auto">
+            Meet the visionaries, clinicians, and dedicated professionals driving India's cardiac health revolution.
+          </p>
+        </div>
       </section>
 
-      {/* --- FEATURED FOUNDER SECTION --- */}
-      <section className="py-24 max-w-7xl mx-auto px-4">
-        <div className="bg-blue-50 rounded-[4rem] p-8 md:p-16 flex flex-col lg:flex-row items-center gap-16 shadow-2xl shadow-blue-100 border border-white">
-          <div className="lg:w-1/2">
-            <img
-              src={leadership.img}
-              className="rounded-[3rem] shadow-2xl border-8 border-white object-contain w-full h-[500px]"
-              alt={leadership.name}
-            />
-          </div>
-          <div className="lg:w-1/2">
-            <span className="text-blue-600 font-black uppercase tracking-widest text-xs">
-              CardioSeva Visionary
-            </span>
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mt-4 mb-6">
-              {leadership.name}
-            </h2>
-            <h4 className="text-xl font-bold text-blue-600 mb-8">
-              {leadership.role}
-            </h4>
-            <p className="text-slate-600 text-lg leading-relaxed mb-10 italic">
-              "{leadership.desc}"
-            </p>
-            <div className="flex gap-4">
-              <Link
-                to="/contact-us"
-                className="bg-white text-blue-600 px-8 py-3 rounded-2xl font-bold border border-blue-100 shadow-sm hover:shadow-md transition inline-block"
-              >
-                Contact Faiq Mansoori
-              </Link>
+      {/* ── FOUNDER SPOTLIGHT ───────────────────── */}
+      <section className="py-28 max-w-7xl mx-auto px-4">
+        <div className="reveal">
+          <div className="relative rounded-[3rem] overflow-hidden shadow-2xl dark:shadow-blue-900/20"
+            style={{ background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)' }}>
+            {/* Dark mode override */}
+            <div className="dark:hidden absolute inset-0 rounded-[3rem] pointer-events-none"></div>
+            <div className="hidden dark:block absolute inset-0 rounded-[3rem] pointer-events-none"
+              style={{ background: 'linear-gradient(135deg, #0f1929 0%, #152032 100%)' }}></div>
+
+            <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12 p-10 lg:p-16">
+              <div className="lg:w-5/12">
+                <div className="relative">
+                  <div className="absolute -inset-3 bg-blue-400/20 dark:bg-blue-600/15 rounded-[2.5rem] blur-xl pointer-events-none"></div>
+                  <img
+                    src={leadership.img}
+                    className="relative z-10 rounded-[2.5rem] shadow-2xl border-4 border-white dark:border-slate-700 object-cover w-full h-[480px]"
+                    alt={leadership.name}
+                  />
+                  {/* Role tag */}
+                  <div className="absolute -bottom-4 left-8 right-8 z-20">
+                    <div className="bg-blue-600 text-white rounded-2xl px-6 py-3 text-center shadow-xl shadow-blue-300/40 dark:shadow-blue-900/50">
+                      <p className="font-black text-lg">{leadership.name}</p>
+                      <p className="text-blue-200 text-xs font-bold uppercase tracking-widest">{leadership.role}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:w-7/12 pt-6 lg:pt-0">
+                <span className="section-label">CardioSeva Visionary</span>
+                <blockquote className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-6 leading-tight tracking-tight italic">
+                  "Healthcare is not a privilege — it is a right for every Indian."
+                </blockquote>
+                <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8 font-medium">
+                  {leadership.desc}
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <Link
+                    to="/contact-us"
+                    className="btn-primary shadow-lg shadow-blue-200/40 dark:shadow-blue-900/40"
+                  >
+                    <i className="fas fa-envelope text-sm"></i> Contact Faiq Mansoori
+                  </Link>
+                  <Link to="/about" className="btn-secondary">
+                    <i className="fas fa-info-circle text-sm"></i> Learn More
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- EXPERTS GRID --- */}
-      <section className="py-24 bg-slate-50">
+      {/* ── TEAM GRID ────────────────────────────── */}
+      <section className="py-16 cs-bg-alt dark:bg-slate-900/40 border-y cs-border">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">
-              Our Dedicated Team
-            </h2>
-            <div className="w-24 h-2 bg-blue-600 mx-auto rounded-full"></div>
+          <div className="text-center mb-16 reveal">
+            <span className="section-label">The Full Team</span>
+            <h2 className="text-4xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">Our Dedicated Professionals</h2>
+            <div className="ecg-line w-28 mx-auto"></div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {experts.map((member, i) => (
               <div
                 key={i}
-                className="group bg-white p-6 rounded-[3rem] shadow-sm hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-blue-100"
+                className="card-lift group overflow-hidden reveal"
+                style={{ transitionDelay: `${i * 0.07}s` }}
               >
-                <div className="relative overflow-hidden rounded-[2.5rem] mb-6">
+                {/* Image */}
+                <div className="relative overflow-hidden h-64 bg-slate-100 dark:bg-slate-800">
                   <img
                     src={member.img}
-                    className="w-full h-80 object-contain transform group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     alt={member.name}
                     loading="lazy"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  {/* Hover label */}
+                  <div className="absolute bottom-4 inset-x-4 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="text-xs font-black uppercase tracking-widest text-blue-300">CardioSeva</p>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2">
-                    {member.name}
-                  </h3>
-                  <p className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-4">
-                    {member.role}
-                  </p>
 
-                  {/* ONLY FOR DR HASSAM: Show Contact Details Below Role */}
+                {/* Info */}
+                <div className="p-5 text-center">
+                  <h3 className="text-lg font-black text-slate-900 dark:text-white mb-1 tracking-tight">{member.name}</h3>
+                  <p className="text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider mb-3">{member.role}</p>
+
+                  {/* Only for Dr Hassam: show contact */}
                   {member.name === "Dr Hassam Ahmad" && (
-                    <div className="flex flex-col items-center gap-2 mt-4 pt-4 border-t border-slate-100">
-                      <a 
-                        href={`mailto:${member.email}`} 
-                        className="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors text-sm font-medium"
-                      >
-                        <i className="fas fa-envelope text-blue-500"></i>
-                        {member.email}
+                    <div className="flex flex-col items-center gap-2 mt-3 pt-3 border-t cs-border">
+                      <a href={`mailto:${member.email}`} className="flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-xs font-medium">
+                        <i className="fas fa-envelope text-blue-500 text-xs"></i>{member.email}
                       </a>
-                      <a 
-                        href={`tel:${member.phone}`} 
-                        className="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors text-sm font-medium"
-                      >
-                        <i className="fas fa-phone text-blue-500"></i>
-                        +91 {member.phone}
+                      <a href={`tel:${member.phone}`} className="flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-xs font-medium">
+                        <i className="fas fa-phone text-blue-500 text-xs"></i>+91 {member.phone}
                       </a>
                     </div>
                   )}
@@ -168,20 +176,23 @@ const Team = () => {
         </div>
       </section>
 
-      {/* --- JOIN OUR MISSION TRIGGER --- */}
-      <section className="py-24 text-center">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-4xl font-black text-slate-900 mb-8">
+      {/* ── JOIN CTA ─────────────────────────────── */}
+      <section className="py-28 text-center px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 text-2xl mb-8">
+            <i className="fas fa-user-plus"></i>
+          </div>
+          <h2 className="text-5xl font-black text-slate-900 dark:text-white mb-6 tracking-tight">
             Want to Join Our Medical Team?
           </h2>
-          <p className="text-slate-500 text-lg mb-12">
-            We are always looking for passionate cardiologists, tech experts,
-            and healthcare volunteers to expand our reach.
+          <p className="text-slate-500 dark:text-slate-400 text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
+            We are always looking for passionate cardiologists, tech experts, and healthcare volunteers to expand our reach.
           </p>
           <Link
-            className="bg-blue-600 text-white px-12 py-5 rounded-full font-black text-xl shadow-2xl shadow-blue-200 hover:bg-blue-700 hover:-translate-y-1 transition-all inline-block"
+            className="btn-primary text-xl px-14 py-5 rounded-full shadow-2xl shadow-blue-200/50 dark:shadow-blue-900/40"
             to="/contact-us"
           >
+            <i className="fas fa-heart-pulse animate-heartbeat"></i>
             Get Involved Now
           </Link>
         </div>

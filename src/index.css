@@ -1,8 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ───────────────────────────────────────────────
+   BASE LAYER — root variables & dark-mode tokens
+─────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --bg-primary:    #ffffff;
+    --bg-secondary:  #f8fafc;
+    --bg-surface:    #f1f5f9;
+    --text-primary:  #0f172a;
+    --text-secondary:#475569;
+    --text-muted:    #94a3b8;
+    --border-color:  #e2e8f0;
+    --accent:        #2563eb;
+    --accent-light:  #eff6ff;
+    --card-bg:       #ffffff;
+    --card-border:   #e2e8f0;
+    --header-bg:     rgba(255,255,255,0.9);
+    --shadow-card:   0 4px 24px rgba(0,0,0,0.07);
+  }
 
-html{
-scroll-behavior: smooth;
+  .dark {
+    --bg-primary:    #090d18;
+    --bg-secondary:  #0f1929;
+    --bg-surface:    #152032;
+    --text-primary:  #e2e8f0;
+    --text-secondary:#94a3b8;
+    --text-muted:    #64748b;
+    --border-color:  #1e3a5f;
+    --accent:        #3b82f6;
+    --accent-light:  #172554;
+    --card-bg:       #0f1929;
+    --card-border:   #1e3a5f;
+    --header-bg:     rgba(9,13,24,0.92);
+    --shadow-card:   0 4px 24px rgba(0,0,0,0.4);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  * {
+    transition: background-color 0.25s ease, border-color 0.25s ease,
+                color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  /* Utility: hide scrollbar but keep function */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* ───────────────────────────────────────────────
+   COMPONENT LAYER — reusable classes
+─────────────────────────────────────────────── */
+@layer components {
+
+  /* --- Surface/card tokens --- */
+  .cs-bg       { background-color: var(--bg-primary); }
+  .cs-bg-alt   { background-color: var(--bg-secondary); }
+  .cs-surface  { background-color: var(--bg-surface); }
+  .cs-card     { background-color: var(--card-bg); border-color: var(--card-border); }
+  .cs-text     { color: var(--text-primary); }
+  .cs-text-sm  { color: var(--text-secondary); }
+  .cs-text-xs  { color: var(--text-muted); }
+  .cs-border   { border-color: var(--border-color); }
+
+  /* --- Premium glass morphism card --- */
+  .glass-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  }
+
+  .dark .glass-card {
+    background: rgba(15,25,40,0.6);
+    border: 1px solid rgba(59,130,246,0.15);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  /* --- Gradient text --- */
+  .gradient-text {
+    background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-crimson {
+    background: linear-gradient(135deg, #e53e3e 0%, #f97316 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* --- Section headings helper --- */
+  .section-label {
+    @apply text-blue-600 dark:text-blue-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block;
+  }
+
+  /* --- Animated CTA button --- */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 px-8 py-4 
+           bg-blue-600 text-white font-bold rounded-2xl overflow-hidden
+           hover:bg-blue-700 active:scale-95 transition-all duration-200 shadow-lg;
+  }
+
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .btn-primary:hover::after { opacity: 1; }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-8 py-4 
+           border-2 border-slate-200 dark:border-slate-700
+           text-slate-800 dark:text-slate-200 
+           font-bold rounded-2xl 
+           hover:border-blue-600 hover:text-blue-600 
+           dark:hover:border-blue-400 dark:hover:text-blue-400
+           transition-all duration-200;
+  }
+
+  /* --- Premium card with hover lift --- */
+  .card-lift {
+    @apply rounded-3xl border transition-all duration-300 
+           hover:-translate-y-2 hover:shadow-2xl;
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* --- Dark section bg with gradient glow --- */
+  .dark-section {
+    background: linear-gradient(135deg, #0f172a 0%, #0a1628 50%, #0f172a 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dark .dark-section {
+    background: linear-gradient(135deg, #070c18 0%, #080e1e 50%, #070c18 100%);
+  }
+
+  /* --- Heartbeat icon container --- */
+  .heart-badge {
+    @apply relative inline-flex items-center justify-center;
+  }
+  .heart-badge::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(239,68,68,0.4);
+    animation: pulseRing 2s ease-out infinite;
+  }
+
+  /* --- Tag pill --- */
+  .tag-pill {
+    @apply text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full;
+  }
+
+  /* --- Shimmer loading skeleton --- */
+  .shimmer {
+    background: linear-gradient(90deg, 
+      var(--bg-surface) 25%, 
+      var(--border-color) 50%, 
+      var(--bg-surface) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+/* ───────────────────────────────────────────────
+   UTILITY LAYER — one-off helpers
+─────────────────────────────────────────────── */
+@layer utilities {
+  .animation-delay-200  { animation-delay: 0.2s; }
+  .animation-delay-400  { animation-delay: 0.4s; }
+  .animation-delay-600  { animation-delay: 0.6s; }
+  .animation-delay-800  { animation-delay: 0.8s; }
+  .animation-delay-1000 { animation-delay: 1.0s; }
+
+  .text-balance { text-wrap: balance; }
+
+  /* Glow effects */
+  .glow-blue { box-shadow: 0 0 30px rgba(37,99,235,0.35), 0 0 60px rgba(37,99,235,0.15); }
+  .glow-red  { box-shadow: 0 0 30px rgba(220,38,38,0.35); }
+
+  /* Custom scrollbar (non-webkit) */
+  * { scrollbar-width: thin; scrollbar-color: #3b82f6 transparent; }
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 100px; }
+
+  /* Gradient backgrounds */
+  .bg-hero-light {
+    background: radial-gradient(ellipse at top right, #dbeafe 0%, #f8fafc 50%, #ffffff 100%);
+  }
+  .dark .bg-hero-light {
+    background: radial-gradient(ellipse at top right, #172554 0%, #0f1929 50%, #090d18 100%);
+  }
+
+  /* ECG line divider */
+  .ecg-line {
+    height: 3px;
+    background: linear-gradient(90deg,
+      transparent 0%, transparent 20%,
+      #3b82f6 20%, #3b82f6 22%, transparent 22%,
+      transparent 28%, #3b82f6 28%, #3b82f6 34%,
+      transparent 34%, transparent 36%, #3b82f6 36%,
+      #3b82f6 50%, transparent 50%,
+      transparent 100%
+    );
+    border-radius: 10px;
+  }
+}
+
+/* ───────────────────────────────────────────────
+   GLOBAL KEYFRAMES (augmenting Tailwind's)
+─────────────────────────────────────────────── */
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  14%     { transform: scale(1.12); }
+  28%     { transform: scale(1); }
+  42%     { transform: scale(1.06); }
+  70%     { transform: scale(1); }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0px) rotate(0deg); }
+  33%     { transform: translateY(-12px) rotate(1deg); }
+  66%     { transform: translateY(-6px) rotate(-1deg); }
+}
+
+@keyframes pulseRing {
+  0%   { transform: scale(0.85); opacity: 0.9; }
+  100% { transform: scale(1.9);  opacity: 0; }
+}
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollX {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes gradientShift {
+  0%,100% { background-position: 0% 50%; }
+  50%     { background-position: 100% 50%; }
+}
+
+/* ───────────────────────────────────────────────
+   SCROLL ANIMATION — .reveal utility
+   Add class="reveal" to any element; JS hooks 
+   IntersectionObserver to add .visible
+─────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ───────────────────────────────────────────────
+   HERO ECG PULSE LINE (decorative SVG path)
+─────────────────────────────────────────────── */
+.ecg-svg-line {
+  stroke-dasharray: 1500;
+  stroke-dashoffset: 1500;
+  animation: drawLine 3s ease forwards;
+}
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ───────────────────────────────────────────────
+   AUTO-SCROLL FEED
+─────────────────────────────────────────────── */
+.animate-scroll {
+  animation: scrollX 35s linear infinite;
+}
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* ───────────────────────────────────────────────
+   MOBILE: fix for animation delay inheriting
+─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, .animate-scroll, .animate-heartbeat, .animate-float {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
